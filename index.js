@@ -26,7 +26,7 @@ const questionTools = [
         "[10] Follow Followers Target No Like",
 	"[11] Follow Followers Target No Comment & Like",
         "[12] Bom Like Post Target",
-	"[12] Bom Komen Post Target",
+	"[13] Bom Komen Post Target",
         "\n"
       ] 
   }
