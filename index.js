@@ -102,8 +102,8 @@ const main = async () => {
         await bomkomen();
         break;
 	 case "[14] Auto DM":
-        const bomkomen = require('./fftdm.js');
-        await bomkomen();
+        const fftdm = require('./fftdm.js');
+        await fftdm();
         break;
       default:
         console.log('\nERROR:\n[?] Aw, Snap! \n[!] Something went wrong while displaying this program!\n[!] Please try again!');
