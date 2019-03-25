@@ -27,6 +27,7 @@ const questionTools = [
 	"[11] Follow Followers Target No Comment & Like",
         "[12] Bom Like Post Target",
 	"[13] Bom Komen Post Target",
+	"[14] Auto DM",
         "\n"
       ] 
   }
@@ -98,6 +99,10 @@ const main = async () => {
         break;
 	 case "[13] Bom Komen Post Target":
         const bomkomen = require('./bomkomen.js');
+        await bomkomen();
+        break;
+	 case "[14] Auto DM":
+        const bomkomen = require('./fftdm.js');
         await bomkomen();
         break;
       default:
