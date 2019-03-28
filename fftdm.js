@@ -107,15 +107,6 @@ async function ngefollow(session,accountId){
   }
 }
 
-async function ngeComment(session, id, text){
-  try {
-    await Client.Comment.create(session, id, text);
-    return true;
-  } catch(e){
-    return false;
-  }
-}
-
 async function ngeLike(session, id){
   try{
     await Client.Like.create(session, id)
@@ -134,7 +125,7 @@ async function ngeDM(session, users, text){
   }
 }
 
-const CommentLikeDM = async function(session, accountId, text){
+const LikeDM = async function(session, accountId, text){
   var result;
 
   const feed = new Client.Feed.UserMedia(session, accountId);
@@ -148,7 +139,6 @@ const CommentLikeDM = async function(session, accountId, text){
   if (result.length > 0) {
     const task = [
     ngefollow(session, accountId),
-    ngeComment(session, result[0].params.id, text),
 	ngeDM(session, accountId, text),
     ngeLike(session, result[0].params.id)
     ]
