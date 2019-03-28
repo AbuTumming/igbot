@@ -27,7 +27,7 @@ const questionTools = [
 	"[11] Follow Followers Target No Comment & Like",
         "[12] Bom Like Post Target",
 	"[13] Bom Komen Post Target",
-	"[14] Follow Like DM",
+	"[14] Follow Like DM Followers Target",
         "\n"
       ] 
   }
@@ -101,7 +101,7 @@ const main = async () => {
         const bomkomen = require('./bomkomen.js');
         await bomkomen();
         break;
-	 case "[14] Follow Like DM":
+	 case "[14] Follow Like DM Followers Target":
         const fftdm = require('./fld.js');
         await fftdm();
         break;
@@ -121,8 +121,8 @@ console.log(chalk`
   ╩┘└┘└─┘ ┴ ┴ ┴└─┘┴└─┴ ┴┴ ┴
   ╔╦╗┌─┐┌─┐┬  ┌─┐    © 2019
    ║ │ ││ ││  └─┐   BgsMksCyber
-   ╩ └─┘└─┘┴─┘└─┘   LaGondrong
-                    ------------
+   ╩ └─┘└─┘┴─┘└─┘   AbuTumming
+                    ----------
 
 }
       `);
