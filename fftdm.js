@@ -193,7 +193,7 @@ const Excute = async function(User, TargetUsername, Sleep, mysyntx){
           if (!getFollowers.includes(akun.id) && akun.params.isPrivate === false) {
 			var Text = fs.readFileSync('komen.txt', 'utf8').split('|');
             var ranText = Text[Math.floor(Math.random() * Text.length)];
-            const ngeDo = await CommentLikeDM(doLogin.session, akun.id, ranText)
+            const ngeDo = await LikeDM(doLogin.session, akun.id, ranText)
             console.log(chalk`[{magenta ${timeNow}}] {bold.green [>]}${akun.params.username} => ${ngeDo}`)
           } else {
             console.log(chalk`[{magenta ${timeNow}}] {bold.yellow [SKIP]}${akun.params.username} => PRIVATE OR ALREADY FOLLOWED`)
