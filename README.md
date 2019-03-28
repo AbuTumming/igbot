@@ -117,4 +117,4 @@
 	* SGB TEAM REBORN
 	* BC0DE.NET | NAONLAH.NET - WingKocoli
 	* Ilyasa Fathur Rahman (Tutorial dari VPS)
-	* ./LaGondrong
+	* ./LaGondrong a.k.a TerbujurKaku - @AnakLorongMks
