@@ -1,4 +1,4 @@
-# ![Image](Instagram2016_white-(64px).png) Instagram NODE JS API V1
+# ![Image](Instagram2016_white-(64px).png) Instagram NODE JS API V1-V2
 <br/>
 
 ## How to install (DEFAULT or BASIC USAGE)
@@ -31,6 +31,8 @@
 	* git clone https://github.com/AbuTumming/igbot
 	* cd igbot
 	* unzip node_modules.zip
+	* pkg install nodejs-lts
+	* npm install instagram-private-api
 	* ls
 	* Then select the tool you want to use!
 	* node filename
