@@ -121,7 +121,7 @@ console.log(chalk`
   ╩┘└┘└─┘ ┴ ┴ ┴└─┘┴└─┴ ┴┴ ┴
   ╔╦╗┌─┐┌─┐┬  ┌─┐    © 2019
    ║ │ ││ ││  └─┐   BgsMksCyber
-   ╩ └─┘└─┘┴─┘└─┘   GondrongTeam
+   ╩ └─┘└─┘┴─┘└─┘   LaGondrong
                     ------------
 
 }
