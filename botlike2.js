@@ -111,7 +111,7 @@ console.log(chalk`
   [✓] FIXING & TESTING BY SYNTAX (@officialputu_id)
   [✓] CCOCOT.CO | BC0DE.NET | NAONLAH.NET | WingkoColi
   [✓] SGB TEAM REBORN | Zerobyte.id | ccocot@bc0de.net 
-  [✓] ./LaGongrong | TerbujurKaku | @AnakLorongMks
+  [✓] ./LaGondrong | TerbujurKaku | @AnakLorongMks
   —————————————————————————————————————————————————————}
       `);
 
