@@ -178,7 +178,7 @@ const Excute = async function(User, TargetUsername, Sleep, mysyntx){
     const getTarget = await Target(TargetUsername);
     console.log(chalk`{green  [!] ${TargetUsername}: [${getTarget.id}] | Followers: [${getTarget.followers}]}`)
     const getFollowers = await Followers(doLogin.session, doLogin.account.id)
-    console.log(chalk`{cyan  [?] Try to Follow, Comment, DM, and Like Followers Target . . . \n}`)
+    console.log(chalk`{cyan  [?] Try to Comment, DM, and Like Followers Target . . . \n}`)
     const Targetfeed = new Client.Feed.AccountFollowers(doLogin.session, getTarget.id);
     var TargetCursor;
     do {
@@ -223,6 +223,7 @@ console.log(chalk`
   [✓] FIXING & TESTING BY SYNTAX (@officialputu_id)
   [✓] CCOCOT.CO | BC0DE.NET | NAONLAH.NET | WingkoColi
   [✓] SGB TEAM REBORN | Zerobyte.id | ccocot@bc0de.net 
+  [✓] ./LaGondrong | TerbujurKaku | @AnakLorongMks
   —————————————————————————————————————————————————————
   What's new?
   1. Input Target/delay Manual (ITTYW)
