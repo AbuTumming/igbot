@@ -142,12 +142,11 @@ const FollowLikeDM = async function(session, accountId, text){
 	ngeDM(session, accountId, text),
     ngeLike(session, result[0].params.id)
     ]
-    const [Follow,Comment,DM,Like] = await Promise.all(task);
+    const [Follow,,DM,Like] = await Promise.all(task);
     const printFollow = Follow ? chalk`{green Follow}` : chalk`{red Follow}`;
-    const printComment = Comment ? chalk`{green Comment}` : chalk`{red Comment}`;
 	const printDM = DM ? chalk`{green DM}` : chalk`{red DM}`;
     const printLike = Like ? chalk`{green Like}` : chalk`{red Like}`;
-    return chalk`{bold.green ${printFollow},${printComment},${printDM},${printLike} [${text}]}`;
+    return chalk`{bold.green ${printFollow},${printDM},${printLike} [${text}]}`;
   }
   return chalk`{bold.white Timeline Kosong (SKIPPED)}`
 };
@@ -179,7 +178,7 @@ const Excute = async function(User, TargetUsername, Sleep, mysyntx){
     const getTarget = await Target(TargetUsername);
     console.log(chalk`{green  [!] ${TargetUsername}: [${getTarget.id}] | Followers: [${getTarget.followers}]}`)
     const getFollowers = await Followers(doLogin.session, doLogin.account.id)
-    console.log(chalk`{cyan  [?] Try to Follow, Comment, DM, and Like Followers Target . . . \n}`)
+    console.log(chalk`{cyan  [?] Try to Follow, DM, and Like Followers Target . . . \n}`)
     const Targetfeed = new Client.Feed.AccountFollowers(doLogin.session, getTarget.id);
     var TargetCursor;
     do {
@@ -216,7 +215,7 @@ console.log(chalk`
   —————————————————— [INFORMATION] ————————————————————
 
   [?] {bold.green FFTauto | Using Account/User Target!}
-  [?] {bold.green Follow, Comment, DM & Like}
+  [?] {bold.green Follow, DM & Like}
   [?] {bold.green Gunakan komen.txt untk komen!}
   
   ——————————————————  [THANKS TO]  ————————————————————
