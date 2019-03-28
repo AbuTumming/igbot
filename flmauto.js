@@ -35,15 +35,6 @@ const User = [
 	}
 },
 {
-	type:'input',
-	name:'text',
-	message:'[>] Insert Text Comment (Use [|] if more than 1):',
-	validate: function(value){
-		if(!value) return 'Can\'t Empty';
-		return true;
-	}
-},
-{
   type:'input',
   name:'mysyntx',
   message:'[>] Input Total of Target You Want (ITTYW):',
@@ -172,36 +163,47 @@ const Followers = async function(session, id){
 	}
 }
 
-const Excute = async function(User, TargetUsername, Text, Sleep, mysyntx){
-	try {
-		console.log(chalk`{yellow \n [?] Try to Login . . .}`)
-		const doLogin = await Login(User);
-		console.log(chalk`{green  [!] Login Succsess, }{yellow [?] Try To Get Link & Media ID Target . . .}`)
-		const getTarget = await Target(TargetUsername);
-		console.log(chalk`{green  [!] ${TargetUsername} [${getTarget}]}`);
-		const getFollowers = await Followers(doLogin.session, doLogin.account.id);
-		console.log(chalk`{cyan  [?] Try to Follow, Comment, and Like Followers Target . . . \n}`)
-		var TargetResult = await Client.Media.likers(doLogin.session, getTarget);
-		TargetResult = _.chunk(TargetResult, mysyntx);
-		for (var i = 0; i < TargetResult.length; i++) {
-			var timeNow = new Date();
-			timeNow = `${timeNow.getHours()}:${timeNow.getMinutes()}:${timeNow.getSeconds()}`
-			await Promise.all(TargetResult[i].map(async(akun) => {
-				if (!getFollowers.includes(akun.id) && akun.params.isPrivate === false) {
-					var ranText = Text[Math.floor(Math.random() * Text.length)];
-					const ngeDo = await CommentAndLike(doLogin.session, akun.id, ranText)
-					console.log(chalk`[{magenta ${timeNow}}] {bold.green [>]} @${akun.params.username} => ${ngeDo}`)
-				} else {
-					console.log(chalk`[{magenta ${timeNow}}] {bold.yellow [SKIPPED]}${akun.params.username} => PRIVATE OR ALREADY FOLLOWED`)
-				}
-			}));
-			console.log(chalk`{yellow \n [#][>] Delay For ${Sleep} MiliSeconds [<][#] \n}`);
-			await delay(Sleep);
-		}
-	} catch (err) {
-		console.log(err);
-	}
+const Excute = async function(User, TargetUsername, Sleep, mysyntx){
+  try {
+    console.log(chalk`{yellow \n [?] Try to Login . . .}`)
+    const doLogin = await Login(User);
+    console.log(chalk`{green  [!] Login Succsess, }{yellow [?] Try To Get ID & Followers Target . . .}`)
+    const getTarget = await Target(TargetUsername);
+    console.log(chalk`{green  [!] ${TargetUsername}: [${getTarget.id}] | Followers: [${getTarget.followers}]}`)
+    const getFollowers = await Followers(doLogin.session, doLogin.account.id)
+    console.log(chalk`{cyan  [?] Try to Follow, Comment, and Like Followers Target . . . \n}`)
+    const Targetfeed = new Client.Feed.AccountFollowers(doLogin.session, getTarget.id);
+    var TargetCursor;
+    do {
+      if (TargetCursor) Targetfeed.setCursor(TargetCursor);
+      var TargetResult = await Targetfeed.get();
+      TargetResult = _.chunk(TargetResult, mysyntx);
+      for (let i = 0; i < TargetResult.length; i++) {
+        var timeNow = new Date();
+        timeNow = `${timeNow.getHours()}:${timeNow.getMinutes()}:${timeNow.getSeconds()}`
+        await Promise.all(TargetResult[i].map(async(akun) => {
+          if (!getFollowers.includes(akun.id) && akun.params.isPrivate === false) {
+	    var Text = fs.readFileSync('komen.txt', 'utf8').split('|');
+            var ranText = Text[Math.floor(Math.random() * Text.length)];
+	    var iki = ranText+' @'+akun.params.username;
+            const ngeDo = await CommentAndLike(doLogin.session, akun.id, iki)
+            console.log(chalk`[{magenta ${timeNow}}] {bold.green [>]}${akun.params.username} => ${ngeDo}`)
+          } else {
+            console.log(chalk`[{magenta ${timeNow}}] {bold.yellow [SKIP]}${akun.params.username} => PRIVATE OR ALREADY FOLLOWED`)
+          }
+        }));
+        console.log(chalk`{yellow \n [#][>] Delay For ${Sleep} MiliSeconds [<][#] \n}`);
+        await delay(Sleep);
+      }
+      TargetCursor = await Targetfeed.getCursor();
+      console.log(chalk`{yellow \n [#][>] Delay For ${Sleep} MiliSeconds [<][#] \n}`);
+      await delay(Sleep);
+    } while(Targetfeed.isMoreAvailable());
+  } catch (err) {
+    console.log(err);
+  }
 }
+
 
 console.log(chalk`
   {bold.cyan
