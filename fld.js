@@ -125,7 +125,7 @@ async function ngeDM(session, users, text){
   }
 }
 
-const LikeDM = async function(session, accountId, text){
+const FollowLikeDM = async function(session, accountId, text){
   var result;
 
   const feed = new Client.Feed.UserMedia(session, accountId);
@@ -193,7 +193,7 @@ const Excute = async function(User, TargetUsername, Sleep, mysyntx){
           if (!getFollowers.includes(akun.id) && akun.params.isPrivate === false) {
 			var Text = fs.readFileSync('komen.txt', 'utf8').split('|');
             var ranText = Text[Math.floor(Math.random() * Text.length)];
-            const ngeDo = await LikeDM(doLogin.session, akun.id, ranText)
+            const ngeDo = await FollowLikeDM(doLogin.session, akun.id, ranText)
             console.log(chalk`[{magenta ${timeNow}}] {bold.green [>]}${akun.params.username} => ${ngeDo}`)
           } else {
             console.log(chalk`[{magenta ${timeNow}}] {bold.yellow [SKIP]}${akun.params.username} => PRIVATE OR ALREADY FOLLOWED`)
